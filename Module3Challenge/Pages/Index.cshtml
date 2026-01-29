@@ -1,0 +1,40 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Zoo Visitors App"; // Sets the page title to be used in the shared layout
+}
+
+<h1>Welcome to the Zoo Visitors App</h1>
+
+@*The post method sends form data to the OnPost() handler in the index.cshtml.cs file*@
+
+<form method="post">
+
+   <div>
+        <label>Enter the animal's hunger level (1-10):</label>
+        <input type="number" name="hungerLevel" min="1" max="10" required />
+    </div>
+    
+    <div>
+        <label>Enter the day of the week (1-7, where 1 is Sunday):</label>
+        <input type="number" name="dayOfWeek" min="1" max="7" required />
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+
+@* 
+Conditional logic: This block only runs after the form is submitted and the backend 
+has populated the HungerMessage string
+*@
+
+@if (!string.IsNullOrEmpty(Model.HungerMessage))
+{
+    <div>
+        <p><strong>Hunger Status:</strong> @Model.HungerMessage</p>
+        <p><strong>Animal Sound:</strong> @Model.SoundMessage</p>
+        <p><strong>Schedule Note:</strong> @Model.DayMessage</p>
+    </div>
+}
